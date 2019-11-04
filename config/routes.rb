@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
+  get 'sessions/admin' => 'sessions#admin'
+  post 'sessions/admin' => 'sessions#admincreate'
   delete 'sessions/logout' => 'sessions#destroy'
 
 
