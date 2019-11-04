@@ -16,6 +16,52 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
+.logo{
+  font-family:STXingkai;
+  color:white;
+  font-size:30px;
+  margin:10px;
+}
+
+#content {
+    height: 85%;
+    width: 100%;
+    background: url(homepage.png) no-repeat;
+    background-size:100% 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 2;
+}
+
+#homeSubmit {
+    width: 230px;
+    margin: 10px;
+    color: grey;
+    font-size: 20px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    height: 45px;
+    line-height: 35px;
+}
+
+.center-in-center{
+  position: absolute;
+  top: 50%;
+  left:60%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .table{
   margin-bottom: 10px;
 }
