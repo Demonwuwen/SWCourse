@@ -21,9 +21,13 @@
             <tr>
               <th>课程编号</th>
               <th>课程名称</th>
+              <th>课程属性</th>
               <th>课时/学分</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+              <% if student_logged_in? %>
+              <th>学位课</th>
+              <% end %>
             </tr>
 
             <tbody>
@@ -32,10 +36,13 @@
 
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
+                  <td><%= course.course_type %></td>
                   <td><%= course.credit %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-
+                  <% if student_logged_in? %>
+                  <th><%= course.degree %></th>
+                  <% end %>
                   <% if teacher_logged_in? %>
                       <td><%= link_to "编辑", edit_course_url(course), class: 'btn btn-xs btn-info' %></td>
                       <% if course.open? %>

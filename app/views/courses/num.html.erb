@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+      
+    <div class="col-sm-2">
+      <%= render "shared/sidenav" %>
+    </div>
+    
+    <div class="col-sm-10">
+       <div class="panel panel-primary"> 
+           <div class="panel-heading">
+               <h3 class="panel-title">学分统计</h3>
+            </div>
+            
+            <div class="panel-body" style="min-height: 450px">
+                <table class="table table-bordered table-striped">
+    		   <thead>
+    		       <tr>
+    		           <th>类别</th>
+    		           <th>公共必修课程及学分</th>
+    		           <th>公共选修课程学分</th>
+    		           <th>专业学位课学分</th>
+    		           <th>总学分</th>
+    		    	</tr>
+    		   	</thead>
+    		   	<tbody>
+    		   		<tr>
+    		   			<th>学习要求</th>
+    		   			<td>
+    		   				<div>学术道德与学术写作规范（1学分)</div>
+    		   				<div>中国特色社会主义理论与实践研究（2学分）</div>
+    		   				<div>自然辩证法概论（1学分）</div>
+    		   				<div>硕士学位英语（英语A）（3学分）</div>
+    		   				<div>知识产权（1学分）</div>
+    		   				<div>信息检索（1学分）</div>
+    		   				<div>专业英语（2学分）</div>
+    		   				<div>工程伦理（1学分）</div>
+    		   				</td>
+    		   			<td>&gt;=2学分</td>
+    		   			<td>&gt;=12学分</td>
+    		   			<td>&gt;=30学分</td>
+    		   		</tr>
+    		   		<% @user=User.new do |user| %>
+    		   		<tr>
+    		   			<th>已选学分</th>
+    		   			<td>
+    		   				<div><%= user.bixiucredit %>学分</div>
+    		   				</td>
+    		   			<td><%= user.xuanxiucredit %>学分</td>
+    		   			<td><%= user.professcredit %>学分</td>
+    		   			<td><%= user.credit %>学分</td>
+    		   		</tr>
+    		   		<% end %>
+    		   		<tr>
+    		   			<th>获取学分</th>
+    		   			<td>
+    		   				<div>3学分</div>
+    		   				</td>
+    		   			<td>0.0学分</td>
+    		   			<td>0.0学分</td>
+    		   			<td>3.0学分</td>
+    		   		</tr>
+    		   	</tbody>
+    		  </table>
+            </div>
+            
+       </div>
+       
+    </div>
+  </div>
+</div>

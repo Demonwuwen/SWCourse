@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
     collection do
       get :list
+      get :findlist
+      get :num
     end
   end
 

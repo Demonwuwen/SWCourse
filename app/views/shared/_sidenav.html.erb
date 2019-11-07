@@ -1,16 +1,46 @@
 <div class="panel-group" id="accordion">
+  
+<% if student_logged_in? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#preCollapse"><span class="glyphicon glyphicon-list"></span>
+              预选课</a>
+          </h4>
+        
+    </div>
+
+    <div id="preCollapse" class="panel-collapse collapse">
+      <div class="list-group">
+
+            <li class="list-group-item">
+<!--链接到？？？-->              <%= link_to  do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 选修课程
+                  <span class="label label-info pull-right"></span>
+                  <% end %>
+            </li>
+            <li class="list-group-item">
+<!--链接到？？？-->              <%= link_to  do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 已选课程
+                  <span class="label label-info pull-right"></span>
+                  <% end %>
+            </li>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">
-
+        <h4 class="panel-title">
         <% if teacher_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-list"></span>
               课程管理</a>
         <% end %>
 
         <% if student_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-user"></span>
+            <a data-toggle="collapse" data-parent="#accordion" href="#CourseCollapse"><span class="glyphicon glyphicon-list"></span>
               选修课程</a>
         <% end %>
 
@@ -47,6 +77,18 @@
                   <span class="label label-info pull-right"><%= current_user.courses.count %></span>
               <% end %>
             </li>
+            <li class="list-group-item">
+                <%= link_to num_courses_path do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 学分提示
+                  <span class="label label-info pull-right"></span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+<!--链接到？？？-->              <%= link_to  do %>
+                  <span class="glyphicon glyphicon-chevron-right"></span> 查看课表
+                  <span class="label label-info pull-right"></span>
+              <% end %>
+            </li>
         <% end %>
 
       </ul>
@@ -57,12 +99,12 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <% if teacher_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
+            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-list"></span>
               成绩管理</a>
         <% end %>
 
         <% if student_logged_in? %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-user"></span>
+            <a data-toggle="collapse" data-parent="#accordion" href="#GradeCollapse"><span class="glyphicon glyphicon-listr"></span>
               所有成绩</a>
         <% end %>
       </h4>

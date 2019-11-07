@@ -10,12 +10,52 @@
           <h3 class="panel-title">选修课程</h3>
         </div>
         <div class="panel-body" style="min-height: 450px">
+          
+          <table class="table table-striped table-hover">
+            <thead>
+              <%= form_for @course=Course.new,url: findlist_courses_url, method: :get do |f| %>
+              <tr>
+                <th><%= f.label "上课时间" %>
+              <%= f.select :course_time,([
+              '周一(1-2)','周一(3-4)','周一(5-6)','周一(7-8)','周一(9-10)',
+              '周一(2-4)','周一(5-7)','周一(9-11)','周一(1-4)','周一(5-8)',
+              '周二(1-2)','周二(3-4)','周二(5-6)','周二(7-8)','周二(9-10)',
+              '周二(2-4)','周二(5-7)','周二(9-11)','周二(1-4)','周二(5-8)',
+              '周三(1-2)','周三(3-4)','周三(5-6)','周三(7-8)','周三(9-10)',
+              '周三(2-4)','周三(5-7)','周三(9-11)','周三(1-4)','周三(5-8)',
+              '周四(1-2)','周四(3-4)','周四(5-6)','周四(7-8)','周四(9-10)',
+              '周四(2-4)','周四(5-7)','周四(9-11)','周四(1-4)','周四(5-8)',
+              '周五(1-2)','周五(3-4)','周五(5-6)','周五(7-8)','周五(9-10)',
+              '周五(2-4)','周五(5-7)','周五(9-11)','周五(1-4)','周五(5-8)',
+              ]),:request=>true%>
+                </th>
+              <th>
+                <%= f.label "课程属性" %>
+              <%= f.select :course_type,([
+              '专业核心课','专业普及课','专业研讨课',
+              '公共必修课','公共选修课',
+              '一级学科核心课','一级学科普及课','一级学科研讨课'
+              ]),:required => true 
+               %>
+              </th>
+              <th><%= f.label "课程名称" %>
+              <%= f.text_field :name, placeholder: "输入课程名" %>
+              </th>
+              <th>
+                <%= f.submit "查询",  class: 'btn btn-info' %>
+              </th>
+              </tr>
+              <% end %>
+            </thead>
+          </table>
+          
           <table class="table table-striped table-hover">
             <thead>
 
             <tr>
               <th>课程编号</th>
               <th>课程名称</th>
+              <th>上课时间</th>
               <th>课时/学分</th>
               <th>限选</th>
               <th>已选</th>
@@ -23,6 +63,7 @@
               <th>授课方式</th>
               <th>考试方式</th>
               <th>主讲教师</th>
+              <th>学位课</th>
 
             </tr>
             </thead>
@@ -33,6 +74,7 @@
 
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
+                  <td><%= course.course_time %></td>
                   <td><%= course.credit %></td>
                   <td><%= course.limit_num %></td>
                   <td><%= course.student_num %></td>
@@ -40,8 +82,12 @@
                   <td><%= course.teaching_type %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
-                  <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
-
+                  <td>
+                    <%= form_for course,url: select_course_url(course), method: :get do |f| %>
+                    <label><%= check_box_tag(:degree) %>是</label>
+                  </td>
+                  <td><%=f.submit "加入课程", class: 'btn-sm btn-success' %></td>
+                  <% end %>
                 </tr>
             <% end %>
             </tbody>

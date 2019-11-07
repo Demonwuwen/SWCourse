@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :student_logged_in, only: [:select, :quit, :list]
+  before_action :student_logged_in, only: [:select, :quit, :list,:num,:findlist]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :open, :close]#add open by qiao
   before_action :logged_in, only: :index
 
@@ -57,6 +57,14 @@ class CoursesController < ApplicationController
 
   #-------------------------for students----------------------
 
+  def num    #统计current_user的学分（公共选修，公共必修，专业学位，总学分），入库，再num.html显示
+    
+  end
+  
+  def findlist   #按照“课程时间、课程属性、课程名称”查询出来，显示在list.html中
+    redirect_to list_courses_path, flash: {:success => "查询结果如下:"}
+  end
+  
   def list
     #-------QiaoCode--------
     @courses = Course.where(:open=>true).paginate(page: params[:page], per_page: 4)
@@ -70,11 +78,11 @@ class CoursesController < ApplicationController
     @course=tmp
   end
 
-  def select
+  def select           #是否是学位课params[:degree]是1则是学位课，否则不是，存入数据库
     @course=Course.find_by_id(params[:id])
     current_user.courses<<@course
     flash={:suceess => "成功选择课程: #{@course.name}"}
-    redirect_to courses_path, flash: flash
+    redirect_to list_courses_path, flash: flash
   end
 
   def quit
